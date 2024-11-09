@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLAT Search Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">BLAT Search Results</h1>
+
+        {% if results %}
+        <table class="table table-striped mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Match</th>
+                    <th>Chromosome</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Strand</th>
+                    <th>Matches</th>
+                    <th>Mismatches</th>
+                    <th>Identity (%)</th>
+                    <th>Gene Name</th> <!-- New column for Gene Name -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for match in results %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ match.chromosome }}</td>
+                    <td>{{ match.chromosome_start }}</td>
+                    <td>{{ match.chromosome_end }}</td>
+                    <td>{{ match.strand }}</td>
+                    <td>{{ match.matches }}</td>
+                    <td>{{ match.misMatches }}</td>
+                    <td>{{ '%.2f' % match.identity_percentage }}</td> <!-- Format identity to two decimal places -->
+                    <td>{{ match.gene_name }}</td> <!-- Display Gene Name -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+        <p>No results found.</p>
+        {% endif %}
+
+        <a href="/" class="btn btn-secondary mt-3">Back to Search</a>
+
+    </div>
+
+</body>
+</html>
