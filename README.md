@@ -1,4 +1,4 @@
-## nucleotide sequence Search Tool
+## Nucleotide Sequence Search Tool
 
 A web application that allows users to perform BLAT searches on nucleotide sequences and retrieve gene information based on chromosome positions.
 
