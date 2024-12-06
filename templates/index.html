@@ -3,33 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLAT Search</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Sequence Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .main-container {
+            max-width: 800px;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .title {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .form-control:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.2rem rgba(52,152,219,0.25);
+        }
+        .btn-search {
+            background-color: #3498db;
+            border: none;
+            padding: 0.8rem;
+            transition: all 0.3s;
+        }
+        .btn-search:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">BLAT Search Tool</h1>
-        <form method="POST" class="mt-4">
-            <div class="form-group">
-                <label for="sequence">Nucleotide Sequence (min 20 bp):</label>
-                <textarea id="sequence" name="sequence" class="form-control" rows="4" required minlength="20"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="build">Genome Build:</label>
-                <select id="build" name="build" class="form-control">
-                    <option value="GRCh37">GRCh37 (hg19)</option>
-                    <option value="GRCh38">GRCh38 (hg38)</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Find Region</button>
-        </form>
+    <div class="container py-5">
+        <div class="main-container mx-auto">
+            <h1 class="title text-center">
+                <i class="fas fa-dna me-2"></i>
+                Sequence Search Tool
+            </h1>
+            
+            <form method="POST" class="mt-4">
+                <div class="mb-4">
+                    <label for="sequence" class="form-label fw-bold">
+                        <i class="fas fa-code me-2"></i>
+                        Nucleotide Sequence (min 20 bp):
+                    </label>
+                    <textarea 
+                        id="sequence" 
+                        name="sequence" 
+                        class="form-control" 
+                        rows="4" 
+                        required 
+                        minlength="20"
+                        placeholder="Enter your sequence here..."
+                    ></textarea>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="build" class="form-label fw-bold">
+                        <i class="fas fa-database me-2"></i>
+                        Genome Build:
+                    </label>
+                    <select id="build" name="build" class="form-select">
+                        <option value="GRCh37">GRCh37 (hg19)</option>
+                        <option value="GRCh38">GRCh38 (hg38)</option>
+                    </select>
+                </div>
 
-        {% if error %}
-        <div class="alert alert-danger mt-3">{{ error }}</div>
-        {% endif %}
+                <button type="submit" class="btn btn-search btn-lg w-100 text-white">
+                    <i class="fas fa-search me-2"></i>
+                    Find Region
+                </button>
+            </form>
+
+            {% if error %}
+            <div class="alert alert-danger mt-4">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <div class="footer text-center">
+                <p>Developed by Dr. Babajan Banaganapalli</p>
+                <p>
+                    <i class="fas fa-envelope me-2"></i>
+                    <a href="mailto:bioinformatics.bb@gmail.com" class="text-decoration-none">
+                        bioinformatics.bb@gmail.com
+                    </a>
+                </p>
+            </div>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
